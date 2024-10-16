@@ -1,0 +1,10 @@
+.logo{
+    max-width: 80%; /* Ensures the image is responsive */
+    height: auto;
+    margin-right: auto;
+
+}
+.carousel-item h-100{
+    object-fit: cover;
+}
+
