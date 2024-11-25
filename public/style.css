@@ -1,5 +1,5 @@
 .logo{
-    max-width: 80%; /* Ensures the image is responsive */
+    max-width: 30%; /* Ensures the image is responsive */
     height: auto;
     margin-right: auto;
 
@@ -8,3 +8,81 @@
     object-fit: cover;
 }
 
+.card-img-top{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.card-img-top2{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+}
+.cart_img{
+    width: 50px;
+    height: 30px;
+}
+/* @media (max-width: 768px) {
+    .navbar-collapse {
+        display: block !important;
+    }
+} */
+.nav-item.dropdown {
+    padding: 2px 0; /* Adjust the vertical padding */
+    height: auto; /* Ensure height is auto to respect padding */
+}
+.logo1{
+    max-width: 80%; /* Ensures the image is responsive */
+    height: auto;
+    margin-right: auto;
+}
+.dropdown-menu {
+    margin-top: 0; /* Reduces the space above the dropdown */
+    padding: 0; /* Optional: reduce padding if needed */
+    position: absolute; /* Ensures it's positioned based on the parent */
+    z-index: 1000; /* Ensures it appears above other content */
+}
+.responsive-image {
+    position: absolute; /* Position it absolutely */
+    top: 0;            /* Align to the top of the div */
+    left: 0;           /* Align to the left of the div */
+    width: 100%;       /* Make the width 100% of the parent div */
+    height: 50%;      /* Make the height 100% of the parent div */
+    object-fit: cover; /* Ensure the image covers the entire div without distortion */
+  }
+  .button-container1 {
+    display: flex;
+    justify-content: space-between; /* Aligns items on either side */
+    align-items: center; /* Centers items vertically */
+    margin: 20px 0; /* Adjust as needed */
+}
+
+.form-container1 {
+    display: flex; /* Makes sure form elements are in a line */
+}
+
+.btn {
+    margin: 0 5px; /* Optional: space between buttons */
+}
+.profile-container {
+    text-align: center;  /* Center align everything */
+}
+
+.user-logo {
+    width: 100px;           /* Adjust logo size */
+    height: 100px;          /* Ensure the logo is square */
+    border-radius: 50%;     /* Makes the image round */
+    object-fit: cover;      /* Ensures the image maintains aspect ratio */
+    margin-bottom: 15px;    /* Space between logo and name */
+}
+
+h2 {
+    font-size: 24px;        /* Adjust font size for name */
+
+}

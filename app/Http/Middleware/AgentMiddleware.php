@@ -4,10 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminMiddleware
+class AgentMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,9 +15,6 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check() || Auth::user()->role !== 'admin') {
-            return redirect('/login-admin')->with('error', 'You are not authorized to access this page.');
-        }
-        abort(401);
+        return $next($request);
     }
 }
