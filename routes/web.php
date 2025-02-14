@@ -10,10 +10,22 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RolePermissionController;
 use Illuminate\Support\Facades\Route;
 
+Route::middleware('admin')->group(function(){
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+});
+// Route::get('/admin', [AdminController::class, 'index'])->middleware('auth', 'permission:create role','admin')->name('admin.dashboard');
+// Route::get('/user', [AgentController::class, 'index'])->middleware('auth','verified','agent')->name('user.dashboard');
+Route::middleware('agent')->group(function(){
+    Route::get('/user', [AgentController::class, 'index'])->name('user.dashboard');
+    Route::get('/list-products',[ProductController::class,'products_table'])->name('products.list');
+    Route::get('edit-products/{id}', [ProductController::class, 'editProduct'])->name('products.edit');
+    Route::put('/products/{id}', [ProductController::class, 'updateProductPost'])->name('products.update');
+    Route::delete('/product-delete/{id}',[ProductController::class,'deleteProduct'])->name('product.delete');
+    Route::get('/insert-products',[ProductController::class,'displayProducts'])->name('add.product');
+    Route::post('/insert-products',[ProductController::class,'addProductPost'])->name('add.product.post');
 
-Route::get('/admin', [AdminController::class, 'index'])->middleware('auth', 'permission:create role')->name('admin.dashboard');
-Route::get('/user', [AgentController::class, 'index'])->middleware('auth','verified','agent')->name('user.dashboard');
 
+});
 // Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
 Route::resource('permissions', PermissionController::class);
 Route::get('permissions/{permissionId}/delete', [PermissionController::class,'destroy']);
@@ -64,17 +76,10 @@ Route::put('/category/{id}', [CategoryController::class, 'updateCategoryPost'])-
 Route::get('delete-category/{id}',[CategoryController::class,'deleteCategory'])->name('category.delete');
 
 //Route::get('/insert-products',[ProductController::class,'insertProducts'])->name('products.insert');
-Route::get('/insert-products',[ProductController::class,'displayProducts'])->name('add.product');
-Route::post('/insert-products',[ProductController::class,'addProductPost'])->name('add.product.post');
 
 Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
 Route::get('/product/{id}',[ProductController::class,'additionalProducts'])->name('additional.products');
 Route::get('/show-products',[ProductController::class,'showCategoriesAndBrands'])->name('category.brand');
-Route::get('/list-products',[ProductController::class,'products_table'])->name('products.list');
-
-Route::get('edit-products/{id}', [ProductController::class, 'editProduct'])->name('products.edit');
-Route::put('/products/{id}', [ProductController::class, 'updateProductPost'])->name('products.update');
-Route::delete('/product-delete/{id}',[ProductController::class,'deleteProduct'])->name('product.delete');
 
 Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
 Route::put('/cart/update/{id}', [CartController::class, 'updateCart'])->name('cart.update');

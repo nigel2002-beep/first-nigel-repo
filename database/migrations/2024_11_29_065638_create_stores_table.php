@@ -11,18 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('stores', function (Blueprint $table) {
             $table->id();
-            $table->string('category_name');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Foreign key to link with the agent (user)
+            $table->string('store_name');
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     */ 
+     */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('stores');
     }
 };

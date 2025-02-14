@@ -16,15 +16,23 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next): Response
 {
-    if (Auth::user() && Auth::user()->isAdmin == 1) {
-        return $next($request);
-    }
+    if (Auth::check()){
+        if (Auth::user()->is_admin == 0){
 
-    if (Auth::user() && Auth::user()->isAdmin == 0) {
-
-        return $next($request);
+            return $next($request);
+            }
+            abort(403);
     }
-    return redirect('/show-products');
+    abort(401);
+    // if (Auth::user() && Auth::user()->isAdmin == 1) {
+    //     return $next($request);
+    // }
+
+    // if (Auth::user() && Auth::user()->isAdmin == 0) {
+
+    //     return $next($request);
+    // }
+    // return redirect('/show-products');
 }
 
 }
